@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    border: 2px solid #000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+/* .team-section-title{
+    text-align: center;
+} */
+
+.company-name {
+    background-color: purple;
+    color: white;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0;
+    /* text-align: center; */
+}
+
+.company-description {
+    margin-top: 10px;
+    font-size: 22px;
+}
+
+.dashed-line {
+    border: none;
+    border-top: 2px dashed #000;
+    margin: 20px 0;
+}
+
+.team-section-title {
+    background-color: purple;
+    color: white;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 20px 0;
+    margin-left: 30vw;
+    
+    /* text-align: center; */
+}
+
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.team-member {
+    flex: 1 1 calc(50% - 20px);
+    text-align: center;
+}
+
+.team-member img {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 50%;
+}
+
+.team-member p {
+    margin: 10px 0 0;
+}
+
+@media (max-width: 768px) {
+    .team-member {
+        flex: 1 1 calc(100% - 20px);
+    }
+}
