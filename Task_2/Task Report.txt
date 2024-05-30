@@ -1,0 +1,42 @@
+Name        : Mayank Agrawal
+Email ID    : mayankagrawal0597@gmail.com
+
+
+Task Title:
+Landing Page Development for EcoDrive X
+
+
+Task Description:
+Develop a landing page for the launch of the EcoDrive X electric car, focusing on design, content, and multimedia elements to attract potential customers.
+
+
+Steps Taken:
+
+. Designed wireframe for the landing page.
+. Developed the HTML structure and CSS styling.
+. Implemented JavaScript for interactive elements, including a simple image carousel.
+
+
+Challenges Faced:
+
+. Ensuring cross-browser compatibility.
+. Optimizing images for faster loading times.
+. Implementing a seamless image carousel.
+
+
+Solutions Implemented:
+
+. Used CSS for a responsive layout.
+. Compressed images using online tools without significant quality loss.
+. Simplified the JavaScript code for the carousel and tested it thoroughly to ensure smooth transitions.
+
+
+Learnings:
+
+. Improved skills in responsive web design.
+. Gained experience in optimizing web performance.
+
+
+Project Update:
+
+The landing page for EcoDrive X has been developed and is ready for testing. The next steps involve thorough testing on various devices and browsers, followed by deployment. The project is on track, and no significant delays are expected.
