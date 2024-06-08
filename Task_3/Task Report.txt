@@ -1,0 +1,72 @@
+Name        : Mayank Agrawal
+Email ID    : mayankagrawal0597@gmail.com
+
+
+Task Title:
+TO-DO App Development
+
+
+Task Description:
+Development of a TO-DO App with features for adding, editing, deleting tasks, marking tasks as completed or pending, and saving tasks locally using HTML, CSS, and JavaScript.
+
+
+Steps Taken:
+
+1. Planning:
+. Defined the structure of the TO-DO app.
+. Decided on the features to include (add, edit, delete, mark as completed/pending, and local storage).
+
+2. HTML:
+. Created the basic structure of the app.
+. Included an input field and a button for adding tasks.
+. Added a list to display tasks.
+
+3. CSS:
+. Styled the app for a clean and user-friendly interface.
+. Ensured the app is responsive and visually appealing.
+
+4. JavaScript:
+. Implemented functionality to add tasks to the DOM.
+. Added features for editing, deleting, and toggling the status of tasks.
+. Used local storage to save and load tasks.
+
+
+Challenges Faced:
+
+1. Understanding Local Storage:
+. Difficulty in figuring out how to save and retrieve tasks from local storage.
+
+2. Event Listeners:
+. Handling multiple event listeners (edit, delete, and status change) for dynamic elements.
+
+
+Solutions Implemented:
+
+1. Local Storage:
+. Read through documentation and tutorials on local storage.
+. Implemented functions to save tasks to and load tasks from local storage.
+
+2. Event Listeners:
+. Utilized event delegation to handle events on dynamically created elements.
+. Ensured event listeners are added appropriately when new tasks are created.
+
+
+Learnings:
+
+1. HTML, CSS, JavaScript Integration:
+. Learned how to effectively integrate HTML, CSS, and JavaScript to create a functional web application.
+
+2. Local Storage:
+. Gained a better understanding of how to use local storage to persist data between sessions.
+
+3. Dynamic DOM Manipulation:
+. Improved skills in dynamically manipulating the DOM using JavaScript.
+
+
+Project Update:
+
+The TO-DO app is now functional with the following features:
+
+. Users can add new tasks through an input field.
+. Each task can be edited, deleted, and marked as completed or pending.
+. Tasks are saved to local storage, allowing users to maintain their task list between sessions.

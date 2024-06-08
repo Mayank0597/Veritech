@@ -1,116 +1,93 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const taskInput = document.getElementById('task-input');
-    const startTimeInput = document.getElementById('start-time-input');
-    const endTimeInput = document.getElementById('end-time-input');
-    const addTaskButton = document.getElementById('add-task-button');
-    const taskList = document.getElementById('task-list');
+document.addEventListener("DOMContentLoaded", () => {
+    const taskInput = document.getElementById("new-task");
+    const addTaskBtn = document.getElementById("add-task");
+    const taskList = document.getElementById("task-list");
 
     const loadTasks = () => {
-        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        tasks.forEach(task => addTaskToDOM(task));
+        const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks.forEach(task => {
+            addTaskToDOM(task);
+        });
     };
 
     const saveTasks = () => {
         const tasks = [];
-        taskList.querySelectorAll('li').forEach(taskItem => {
+        taskList.childNodes.forEach(taskItem => {
             tasks.push({
-                text: taskItem.querySelector('.task-text').textContent,
-                startTime: taskItem.querySelector('.task-start-time').textContent,
-                endTime: taskItem.querySelector('.task-end-time').textContent,
-                completed: taskItem.classList.contains('completed')
+                text: taskItem.querySelector(".task").textContent,
+                completed: taskItem.querySelector(".task").classList.contains("completed"),
+                id: taskItem.getAttribute("data-id")
             });
         });
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem("tasks", JSON.stringify(tasks));
     };
 
-    const addTaskToDOM = (task) => {
-        const taskItem = document.createElement('li');
-
-        const taskDetails = document.createElement('div');
-        taskDetails.classList.add('task-details');
-
-        const taskText = document.createElement('span');
-        taskText.classList.add('task-text');
+    const addTaskToDOM = task => {
+        const taskItem = document.createElement("li");
+        taskItem.setAttribute("data-id", task.id);
+        
+        const taskText = document.createElement("span");
+        taskText.className = "task";
         taskText.textContent = task.text;
-        taskDetails.appendChild(taskText);
-
-        const taskTimes = document.createElement('span');
-        taskTimes.innerHTML = `From: <span class="task-start-time">${task.startTime}</span> - To: <span class="task-end-time">${task.endTime}</span>`;
-        taskDetails.appendChild(taskTimes);
-
-        taskItem.appendChild(taskDetails);
-
-        const editButton = document.createElement('button');
-        editButton.textContent = 'Edit';
-        editButton.addEventListener('click', () => editTask(taskItem));
-        taskItem.appendChild(editButton);
-
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.addEventListener('click', () => deleteTask(taskItem));
-        taskItem.appendChild(deleteButton);
-
-        taskText.addEventListener('click', () => toggleTaskCompletion(taskItem));
         if (task.completed) {
-            taskItem.classList.add('completed');
+            taskText.classList.add("completed");
         }
+
+        const actions = document.createElement("div");
+        actions.className = "actions";
+
+        const editBtn = document.createElement("button");
+        editBtn.className = "edit";
+        editBtn.textContent = "Edit";
+        editBtn.addEventListener("click", () => {
+            const newText = prompt("Edit task:", taskText.textContent);
+            if (newText) {
+                taskText.textContent = newText;
+                saveTasks();
+            }
+        });
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "delete";
+        deleteBtn.textContent = "Delete";
+        deleteBtn.addEventListener("click", () => {
+            taskItem.remove();
+            saveTasks();
+        });
+
+        const statusBtn = document.createElement("button");
+        statusBtn.className = "status";
+        statusBtn.textContent = task.completed ? "Mark as Pending" : "Mark as Completed";
+        statusBtn.addEventListener("click", () => {
+            taskText.classList.toggle("completed");
+            statusBtn.textContent = taskText.classList.contains("completed") ? "Mark as Pending" : "Mark as Completed";
+            saveTasks();
+        });
+
+        actions.appendChild(editBtn);
+        actions.appendChild(deleteBtn);
+        actions.appendChild(statusBtn);
+
+        taskItem.appendChild(taskText);
+        taskItem.appendChild(actions);
 
         taskList.appendChild(taskItem);
     };
 
-    const addTask = () => {
+    addTaskBtn.addEventListener("click", () => {
         const taskText = taskInput.value.trim();
-        const startTime = startTimeInput.value;
-        const endTime = endTimeInput.value;
-
-        if (taskText !== '' && startTime !== '' && endTime !== '') {
-            const task = { text: taskText, startTime: startTime, endTime: endTime, completed: false };
+        if (taskText) {
+            const task = {
+                text: taskText,
+                completed: false,
+                id: Date.now().toString()
+            };
             addTaskToDOM(task);
             saveTasks();
-            taskInput.value = '';
-            startTimeInput.value = '';
-            endTimeInput.value = '';
-        }
-    };
-
-    const editTask = (taskItem) => {
-        const taskText = taskItem.querySelector('.task-text');
-        const newText = prompt('Edit task:', taskText.textContent);
-        if (newText !== null) {
-            taskText.textContent = newText;
-        }
-
-        const startTime = taskItem.querySelector('.task-start-time');
-        const newStartTime = prompt('Edit start time (HH:MM):', startTime.textContent);
-        if (newStartTime !== null) {
-            startTime.textContent = newStartTime;
-        }
-
-        const endTime = taskItem.querySelector('.task-end-time');
-        const newEndTime = prompt('Edit end time (HH:MM):', endTime.textContent);
-        if (newEndTime !== null) {
-            endTime.textContent = newEndTime;
-        }
-
-        saveTasks();
-    };
-
-    const deleteTask = (taskItem) => {
-        taskList.removeChild(taskItem);
-        saveTasks();
-    };
-
-    const toggleTaskCompletion = (taskItem) => {
-        taskItem.classList.toggle('completed');
-        saveTasks();
-    };
-
-    addTaskButton.addEventListener('click', addTask);
-    taskInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            addTask();
+            taskInput.value = "";
         }
     });
 
     loadTasks();
 });
+
